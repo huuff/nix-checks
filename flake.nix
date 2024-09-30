@@ -1,8 +1,8 @@
 {
-  description = "Template for nix projects";
+  description = "Checks for nix flakes";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     pre-commit.url = "github:cachix/git-hooks.nix";
     treefmt.url = "github:numtide/treefmt-nix";
     systems.url = "github:nix-systems/x86_64-linux";
@@ -42,13 +42,18 @@
           '';
       in
       {
+        lib = {
+          checks = {
+            statix = mkCheck "statix-check" "${pkgs.statix}/bin/statix check";
+            deadnix = mkCheck "deadnix-check" "${pkgs.deadnix}/bin/deadnix --fail";
+            flake-checker = mkCheck "flake-check" "${pkgs.flake-checker}/bin/flake-checker --fail-mode";
+          };
+        };
         checks = {
           # just check formatting is ok without changing anything
           formatting = treefmt-build.check self;
 
-          statix = mkCheck "statix-check" "${pkgs.statix}/bin/statix check";
-          deadnix = mkCheck "deadnix-check" "${pkgs.deadnix}/bin/deadnix --fail";
-          flake-checker = mkCheck "flake-check" "${pkgs.flake-checker}/bin/flake-checker --fail-mode";
+          inherit (self.lib.${system}.checks) statix deadnix flake-checker;
         };
 
         # for `nix fmt`
