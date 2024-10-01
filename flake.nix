@@ -34,9 +34,9 @@
           };
         };
         mkCheck =
-          name: code:
+          name: code: path:
           pkgs.runCommand name { } ''
-            cd ${./.}
+            cd ${path}
             ${code}
             mkdir "$out"
           '';
