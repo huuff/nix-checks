@@ -1,0 +1,21 @@
+name: Check
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [master, main] 
+
+jobs:
+  nix-flake-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          # Mostly to avoid GitHub rate limiting
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
+      - name: Check
+        run: nix flake check
