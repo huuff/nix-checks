@@ -6,6 +6,7 @@
     pre-commit.url = "github:cachix/git-hooks.nix";
     treefmt.url = "github:numtide/treefmt-nix";
     systems.url = "github:nix-systems/x86_64-linux";
+    my-derivations.url = "github:huuff/nix-derivations";
     utils = {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
@@ -19,6 +20,7 @@
       utils,
       pre-commit,
       treefmt,
+      my-derivations,
       ...
     }:
     utils.lib.eachDefaultSystem (
@@ -47,6 +49,7 @@
             statix = mkCheck "statix-check" "${pkgs.statix}/bin/statix check";
             deadnix = mkCheck "deadnix-check" "${pkgs.deadnix}/bin/deadnix --fail";
             flake-checker = mkCheck "flake-check" "${pkgs.flake-checker}/bin/flake-checker --fail-mode";
+            leptosfmt = mkCheck "leptosfmt" "${my-derivations.packages.${system}.leptosmt} --check";
           };
         };
         checks = {
