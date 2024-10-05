@@ -42,6 +42,8 @@
             ${code}
             mkdir "$out"
           '';
+
+        my-pkgs = my-derivations.packages.${system};
       in
       {
         lib = {
@@ -49,7 +51,7 @@
             statix = mkCheck "statix-check" "${pkgs.statix}/bin/statix check";
             deadnix = mkCheck "deadnix-check" "${pkgs.deadnix}/bin/deadnix --fail";
             flake-checker = mkCheck "flake-check" "${pkgs.flake-checker}/bin/flake-checker --fail-mode";
-            leptosfmt = mkCheck "leptosfmt" "${my-derivations.packages.${system}.leptosfmt} --check .";
+            leptosfmt = mkCheck "leptosfmt" "${my-pkgs.leptosfmt}/bin/leptosfmt --check .";
           };
         };
         checks = {
