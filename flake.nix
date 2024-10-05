@@ -53,7 +53,9 @@
           # just check formatting is ok without changing anything
           formatting = treefmt-build.check self;
 
-          inherit (self.lib.${system}.checks) statix deadnix flake-checker;
+          statix = self.lib.${system}.checks.statix ./.;
+          deadnix = self.lib.${system}.checks.deadnix ./.;
+          flake-checker = self.lib.${system}.checks.flake-checker ./.;
         };
 
         # for `nix fmt`
