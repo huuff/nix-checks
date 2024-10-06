@@ -51,7 +51,9 @@
             statix = mkCheck "statix-check" "${pkgs.statix}/bin/statix check";
             deadnix = mkCheck "deadnix-check" "${pkgs.deadnix}/bin/deadnix --fail";
             flake-checker = mkCheck "flake-check" "${pkgs.flake-checker}/bin/flake-checker --fail-mode";
+            # actually I shouldn't use this most of the time since I'd have it for treefmt?
             leptosfmt = mkCheck "leptosfmt" "${my-pkgs.leptosfmt}/bin/leptosfmt --check .";
+            clippy = mkCheck "clippy" "${pkgs.clippy}/bin/clippy -- --all-features --deny warnings";
           };
         };
         checks = {
