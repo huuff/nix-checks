@@ -78,7 +78,7 @@
                 naersk'.buildPackage {
                   src = path;
                   mode = "clippy";
-                  cargoClippyOptions = [
+                  cargoClippyOptions = _: [
                     "--all-features"
                     "--deny warnings"
                   ];
