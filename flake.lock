@@ -137,6 +137,26 @@
         "type": "github"
       }
     },
+    "naersk": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743800763,
+        "narHash": "sha256-YFKV+fxEpMgP5VsUcM6Il28lI0NlpM7+oB1XxbBAYCw=",
+        "owner": "nix-community",
+        "repo": "naersk",
+        "rev": "ed0232117731a4c19d3ee93aa0c382a8fe754b01",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "nix-checks": {
       "inputs": {
         "nixpkgs": [
@@ -387,6 +407,7 @@
     "root": {
       "inputs": {
         "my-derivations": "my-derivations",
+        "naersk": "naersk",
         "nixpkgs": "nixpkgs_6",
         "pre-commit": "pre-commit_3",
         "systems": "systems_3",
