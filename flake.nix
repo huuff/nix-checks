@@ -78,6 +78,10 @@
                 naersk'.buildPackage {
                   src = path;
                   mode = "clippy";
+                  cargoClippyOptions = [
+                    "--all-features"
+                    "--deny warnings"
+                  ];
                 };
             };
         };
