@@ -36,7 +36,7 @@
           };
         };
         mkCheck =
-          name: code: deps: path:
+          name: deps: code: path:
           pkgs.runCommand name
             {
               nativeBuildInputs = deps;
