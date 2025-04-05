@@ -60,7 +60,7 @@
           rustChecks =
             { rustToolchain }:
             {
-              clippy = mkCheck "clippy" "${rustToolchain.passthru.availableComponents.clippy}/bin/cargo-clippy -- --all-features --deny-warnings";
+              clippy = mkCheck "clippy" "${rustToolchain.passthru.availableComponents.cargo}/bin/cargo clippy -- --all-features --deny-warnings";
             };
         };
         checks = {
