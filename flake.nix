@@ -39,6 +39,7 @@
           name: deps: code: path:
           pkgs.runCommand name
             {
+              __impure = true;
               nativeBuildInputs = deps;
             }
             ''
