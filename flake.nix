@@ -78,10 +78,8 @@
                 naersk'.buildPackage {
                   src = path;
                   mode = "clippy";
-                  cargoClippyOptions = _: [
-                    "--all-features"
-                    "--deny warnings"
-                  ];
+                  cargoOptions = _: [ "--all-features" ];
+                  cargoClippyOptions = _: [ "--deny warnings" ];
                 };
             };
         };
