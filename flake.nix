@@ -66,7 +66,7 @@
             {
               clippy = mkCheck "clippy" [
                 rustToolchain
-              ] "cargo clippy -- --all-features --deny-warnings --offline";
+              ] "cargo clippy --all-features --deny-warnings --offline";
             };
         };
         checks = {
