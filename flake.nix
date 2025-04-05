@@ -39,7 +39,6 @@
           name: deps: code: path:
           pkgs.runCommand name
             {
-              __impure = true;
               nativeBuildInputs = deps;
             }
             ''
@@ -65,7 +64,9 @@
           rustChecks =
             { rustToolchain }:
             {
-              clippy = mkCheck "clippy" [ rustToolchain ] "cargo clippy -- --all-features --deny-warnings";
+              clippy = mkCheck "clippy" [
+                rustToolchain
+              ] "cargo clippy -- --all-features --deny-warnings --offline";
             };
         };
         checks = {
