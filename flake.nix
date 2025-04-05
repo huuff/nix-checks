@@ -39,7 +39,7 @@
           name: code: deps: path:
           pkgs.runCommand name
             {
-              nativeBuildInputs = [ deps ];
+              nativeBuildInputs = deps;
             }
             ''
               cd ${path}
